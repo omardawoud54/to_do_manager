@@ -15,8 +15,9 @@ To-Do Manager is a simple web application for managing your daily tasks. It allo
 - SQLite
 - HTML/CSS (Frontend)
 - Jinja (HTML Templating)
+- JS (For Simple Things)
 
 ## How to Run:
 ### 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/to-do-manager.git
+git clone https://github.com/omardawoud54/to_do_manager.git
