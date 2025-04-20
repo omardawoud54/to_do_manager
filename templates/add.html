@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="add-container">
+        <h1>Add New Task</h1>
+        <div class="dashboard-link">
+            <button onclick="location.href='{{ url_for('home.index') }}'" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+        
+        <form method="POST" action="{{ url_for('add.add_task') }}" class="add-form">
+            <div class="form-group">
+                <label for="task">Task Name</label>
+                <input 
+                    type="text" 
+                    id="task" 
+                    name="task" 
+                    placeholder="Enter task name"
+                    required
+                    autocomplete="off"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Enter task description"
+                    rows="4"
+                ></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="due_date">Due Date</label>
+                    <input 
+                        type="date" 
+                        id="due_date" 
+                        name="due_date"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="priority">Priority Level</label>
+                    <select name="priority" id="priority">
+                        <option value="high" {% if default_priority == 'high' %}selected{% endif %}>High Priority</option>
+                        <option value="medium" {% if default_priority == 'medium' %}selected{% endif %}>Medium Priority</option>
+                        <option value="low" {% if default_priority == 'low' %}selected{% endif %}>Low Priority</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-button">Create Task</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="delete-container">
+    <h1>{{ title }}</h1>
+    <div class="navigation-buttons">
+        <button onclick="location.href='{{ url_for('home.index') }}'" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+        {% if completed_tasks is not defined %}
+            <button onclick="location.href='{{ url_for('delete.view_completed') }}'" class="view-completed">
+                <i class="fas fa-check-circle"></i> View Completed Tasks
+            </button>
+        {% endif %}
+    </div>
+
+    {% if completed_tasks is defined %}
+    <div class="completed-tasks">
+        <form method="POST" action="{{ url_for('delete.view_completed') }}">
+            {% if completed_tasks %}
+                <div class="tasks-grid">
+                    {% for task in completed_tasks %}
+                        <div class="task-card">
+                            <label class="task-content">
+                                <input type="checkbox" name="selected_tasks" value="{{ task.id }}"
+                                    {% if restore_all|default(false) %}checked{% endif %}>
+                                <div class="task-header">
+                                    <span class="task-number">{{ loop.index }}</span>
+                                    <h3>{{ task.task }}</h3>
+                                </div>
+                                <div class="task-details">
+                                    <p><strong>Description:</strong> {{ task.description }}</p>
+                                    <p><strong>Completed:</strong> <span class="completion-date">{{ task.completion_date }}</span></p>
+                                    <span class="priority-badge priority-{{ task.priority }}">{{ task.priority }}</span>
+                                </div>
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" name="restore_tasks" class="restore-btn">Restore Selected/All</button>
+                    <button type="submit" name="delete_completed" class="delete-btn">Delete Selected/All</button>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No completed tasks available.</p>
+                </div>
+            {% endif %}
+        </form>
+    </div>
+    {% else %}
+    <form method="POST" action="{{ url_for('delete.delete_task') }}" class="delete-form" 
+          onsubmit="return confirm('Are you sure you want to delete these tasks?');">
+        {% if tasks %}
+            <div class="tasks-grid">
+                {% for task in tasks %}
+                    <div class="task-card" data-priority="{{ task.priority }}">
+                        <label class="task-content">
+                            <input type="checkbox" name="tasks" value="{{ task.id }}">
+                            <div class="task-header">
+                                <span class="task-number">{{ loop.index }}</span>
+                                <h3>{{ task.task }}</h3>
+                            </div>
+                            <div class="task-details">
+                                <p><strong>Description:</strong> {{ task.description }}</p>
+                                <p><strong>Due Date:</strong> {{ task.due_date }}</p>
+                                <span class="priority-badge priority-{{ task.priority }}">{{ task.priority }}</span>
+                            </div>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="action-buttons">
+                <button type="submit" name="delete_tasks" class="delete-btn">Delete Selected</button>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>No tasks to delete!</p>
+            </div>
+        {% endif %}
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
