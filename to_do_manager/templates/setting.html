@@ -1,0 +1,92 @@
+{% extends "index.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="settings-container">
+        <h1>Settings</h1>
+        <div class="dashboard-page">
+            <button onclick="location.href='{{ url_for('home.index') }}'">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+        
+        {% if completed_count is defined %}
+        <div class="stats-card">
+            <h3>Tasks Completed</h3>
+            <div class="stats-number">{{ completed_count }}</div>
+        </div>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('setting.setting_page') }}" class="setting-form">
+            <div class="settings-group">
+                <h2>Profile Settings</h2>
+                <div class="setting-item">
+                    <label for="name">Username</label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           placeholder="Enter your name" 
+                           value="{{ settings[0] if settings else '' }}" 
+                           required>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h2>Task Preferences</h2>
+                <div class="setting-item">
+                    <label for="default_priority">Default Task Priority</label>
+                    <select id="default_priority" name="default_priority">
+                        <option value="high" {% if settings and settings[1] == 'high' %}selected{% endif %}>High</option>
+                        <option value="medium" {% if not settings or settings[1] == 'medium' %}selected{% endif %}>Medium</option>
+                        <option value="low" {% if settings and settings[1] == 'low' %}selected{% endif %}>Low</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="tasks_per_page">Tasks Per Page</label>
+                    <select id="tasks_per_page" name="tasks_per_page">
+                        <option value="5" {% if settings and settings[2] == 5 %}selected{% endif %}>5 Tasks</option>
+                        <option value="10" {% if not settings or settings[2] == 10 %}selected{% endif %}>10 Tasks</option>
+                        <option value="20" {% if settings and settings[2] == 20 %}selected{% endif %}>20 Tasks</option>
+                        <option value="50" {% if settings and settings[2] == 50 %}selected{% endif %}>50 Tasks</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="sort_by">Default Sort Order</label>
+                    <select id="sort_by" name="sort_by">
+                        <option value="due_date" {% if not settings or settings[3] == 'due_date' %}selected{% endif %}>Due Date</option>
+                        <option value="priority" {% if settings and settings[3] == 'priority' %}selected{% endif %}>Priority</option>
+                        <option value="name" {% if settings and settings[3] == 'name' %}selected{% endif %}>Task Name</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h2>Display Settings</h2>
+                <div class="setting-item checkbox-setting">
+                    <label for="auto_archive">
+                        <input type="checkbox" 
+                               id="auto_archive" 
+                               name="auto_archive"
+                               {% if settings and settings[4] %}checked{% endif %}>
+                        Auto-archive completed tasks
+                    </label>
+                    <p class="setting-description">Automatically move completed tasks to archive</p>
+                </div>
+
+                <div class="setting-item checkbox-setting">
+                    <label for="show_completed">
+                        <input type="checkbox" 
+                               id="show_completed" 
+                               name="show_completed"
+                               {% if not settings or settings[5] %}checked{% endif %}>
+                        Show completed tasks count
+                    </label>
+                    <p class="setting-description">Display completed tasks counter on dashboard</p>
+                </div>
+            </div>
+
+            <button type="submit" class="save-settings">Save Changes</button>
+        </form>
+    </div>
+{% endblock %}
