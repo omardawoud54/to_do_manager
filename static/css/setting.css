@@ -1,0 +1,318 @@
+.settings-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: var(--container-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.settings-container h1 {
+    color: var(--text);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.dashboard-page {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-page button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow);
+}
+
+.dashboard-page button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow);
+}
+
+.stats-card {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    margin: 30px 0;
+    color: white;
+    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.3);
+    animation: cardSlideUp 0.5s ease-out, pulse 2s infinite;
+}
+
+.stats-card h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.stats-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+
+.setting-form {
+    margin-top: 40px;
+}
+
+.name-setting {
+    margin-bottom: 25px;
+}
+
+.name-setting label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.name-setting input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    color: var(--text);
+}
+
+.name-setting input:focus {
+    border-color: var(--button-bg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.setting-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.setting-form button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.settings-group {
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px var(--shadow);
+    animation: popIn 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.settings-group h2 {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.settings-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.settings-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.settings-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.setting-item {
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.setting-item:hover {
+    transform: translateX(5px);
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    color: var(--text);
+}
+
+.checkbox-setting {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.checkbox-setting label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.setting-description {
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-left: 32px;
+}
+
+.save-settings {
+    width: 100%;
+    padding: 14px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    animation: buttonPop 0.3s ease-out;
+}
+
+.save-settings:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes buttonPop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        margin: 10px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .settings-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats-card {
+        padding: 20px;
+    }
+
+    .stats-number {
+        font-size: 2.2rem;
+    }
+
+    .settings-group {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .settings-group h2 {
+        font-size: 1.2rem;
+    }
+
+    .setting-item {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-container {
+        padding: 15px;
+    }
+
+    .setting-item input,
+    .setting-item select {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .setting-description {
+        font-size: 0.8rem;
+        margin-left: 25px;
+    }
+
+    .save-settings {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
